@@ -56,7 +56,7 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
       </div>
 
       <div ref={observerRef} className="mt-6 h-10 flex items-center justify-center">
-        {loadingMore && <p className="text-lg text-gray-500 animate-pulse">Cargando...</p>}
+        {loadingMore && visibleCount < pokemonList.length && <p className="text-lg text-gray-300 animate-pulse">Cargando...</p>}
       </div>
     </>
   );

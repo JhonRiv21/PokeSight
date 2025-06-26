@@ -50,7 +50,7 @@ export const Header = () => {
       <div ref={sentinelRef} />
 
       <header
-        className={`sticky top-0 z-50 border-b shadow-sm transition-all duration-300 px-5 ${
+        className={`sticky top-0 z-50 border-b border-gray-300 shadow-lg transition-all duration-300 px-5 ${
           isSticky ? 'py-3' : 'py-4'
         }`}
         style={{ backgroundColor: 'var(--background)' }}
@@ -70,7 +70,7 @@ export const Header = () => {
                 }`}
               >
                 <span
-                  className={`dot h-6 w-6 rounded-full bg-white duration-200 ${
+                  className={`h-6 w-6 rounded-full bg-white duration-200 ${
                     isDark ? 'translate-x-[28px]' : ''
                   }`}
                 />
@@ -79,11 +79,11 @@ export const Header = () => {
             </label>
 
             <button onClick={() => setView('grid')} className={activeButton('grid')}>
-              <GridIcon size={16} />
+              <GridIcon size={20} />
               Grid
             </button>
             <button onClick={() => setView('table')} className={activeButton('table')}>
-              <TableIcon size={16} />
+              <TableIcon size={20} />
               Table
             </button>
           </div>
