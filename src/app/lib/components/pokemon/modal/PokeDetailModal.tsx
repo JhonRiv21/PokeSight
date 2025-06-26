@@ -49,7 +49,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="relative flex w-full my-12 mx-3 sm:my-0 sm:mx-0 border border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-white dark:bg-neutral-900 max-h-screen md:max-h-[90vh] overflow-y-auto scrollable"
+            className="relative flex w-full my-16 mx-3 sm:my-0 sm:mx-0 border border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-white dark:bg-neutral-900 max-h-[80vh] md:max-h-[90vh] overflow-y-auto scrollable"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
