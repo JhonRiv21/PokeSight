@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import type { PokemonUI } from '../types/typesPokemonDetails';
 import { typeColors } from '../utils/styles';
+import { useMemo } from 'react';
 
 /**
  * @param {number} value
@@ -22,7 +23,7 @@ type PokeTableProps = {
 };
 
 export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
-  const columns: GridColDef<PokemonUI>[] = [
+  const columns = React.useMemo<GridColDef<PokemonUI>[]>(() => [
     {
       field: 'image',
       headerName: 'Image',
@@ -152,7 +153,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
         </Button>
       ),
     },
-  ];
+  ], [onShowDetails]);
 
   return (
     <Box sx={{ height: 650, width: '100%' }}>

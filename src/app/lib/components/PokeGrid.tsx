@@ -4,6 +4,8 @@ import { PokeCard } from './PokeCard';
 import { PokemonUI } from '../types/typesPokemonDetails';
 import { useEffect, useRef, useState } from 'react';
 import { X, Search } from 'lucide-react';
+import { useFilteredPokemons } from '../hooks/useFilteredPokemons';
+import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import { useFavoritesStore } from '@/app/stores/favorites';
 
 type Props = {
@@ -20,41 +22,37 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
   const observerRef = useRef<HTMLDivElement | null>(null);
   const favorites = useFavoritesStore((state) => state.favorites);
 
-  const filteredList = pokemonList
-    .filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    .filter((item) => (showOnlyFavorites ? favorites.includes(item.id) : true));
+  const filteredList = useFilteredPokemons(
+    pokemonList,
+    searchTerm,
+    favorites,
+    showOnlyFavorites
+  );
 
   const visiblePokemons = filteredList.slice(0, visibleCount);
 
+  useInfiniteScroll({
+    targetRef: observerRef,
+    canLoadMore: visibleCount < filteredList.length,
+    loading: loadingMore,
+    onLoadMore: () => {
+      setLoadingMore(true);
+      setTimeout(() => {
+        setVisibleCount((prev) => prev + 20);
+        setLoadingMore(false);
+      }, 400);
+    },
+  });
+
   useEffect(() => {
     setVisibleCount(20);
+  }, [searchTerm]);
 
+  useEffect(() => {
     if (showOnlyFavorites && favorites.length === 0) {
       setShowOnlyFavorites(false);
     }
-  }, [searchTerm, showOnlyFavorites, favorites.length]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && visibleCount < filteredList.length) {
-          setLoadingMore(true);
-          setTimeout(() => {
-            setVisibleCount((prev) => prev + 20);
-            setLoadingMore(false);
-          }, 400);
-        }
-      },
-      { threshold: 1 }
-    );
-
-    const current = observerRef.current;
-    if (current) observer.observe(current);
-
-    return () => {
-      if (current) observer.unobserve(current);
-    };
-  }, [visibleCount, filteredList.length || 0]);
+  }, [showOnlyFavorites, favorites.length])
 
   return (
     <>
