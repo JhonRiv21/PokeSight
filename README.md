@@ -1,85 +1,112 @@
-# Pokémon Explorer
+# PokeSight  
+**Page →** [https://poke-sight.vercel.app/](https://poke-sight.vercel.app/)
 
-Este proyecto es una aplicación web construida con **Next.js**, **React** y **TypeScript**, diseñada para explorar los 151 Pokémon de la primera generación. A continuación encontrarás:
+This project is a web application built with **Next.js**, **React**, and **TypeScript**, designed to explore the 151 first-generation Pokémon. It includes:
 
-* 📋 **Descripción general**
-* ✅ **Requisitos técnicos** cumplidos
-* 🚀 **Características adicionales** implementadas
-* 🗂️ **Estructura de archivos**
-* 🧪 **Pruebas unitarias**
-* ⚙️ **Cómo ejecutar el proyecto**
+* 📋 **Overview**
+* ✅ **Technical requirements** fulfilled
+* 🚀 **Additional features** implemented
+* 🗂️ **File structure**
+* 🧪 **Unit tests**
+* ⚙️ **How to run the project**
 
 ---
 
-## 📋 Descripción general
+## 📋 Overview
 
-* Consume la **PokéAPI** para obtener la lista de Pokémon y sus detalles.
-* Permite alternar entre dos vistas:
+* Fetches data from the **PokéAPI** to list and display Pokémon details.
+* Supports switching between two views:
 
-  1. **Cuadrícula (Grid)** responsive con tarjetas.
-  2. **Tabla** interactiva usando **MUI DataGrid**.
-* Al hacer clic en un Pokémon, muestra un **modal** con información detallada.
+  1. A **responsive grid** view with cards.
+  2. An **interactive table** using **MUI DataGrid**.
+* Clicking a Pokémon opens a **modal** with detailed information.
 
-## ✅ Requisitos técnicos cumplidos
+## ✅ Technical requirements fulfilled
 
-1. **Framework**: React con Next.js (SSR/CSR) y TypeScript.
-2. **Vistas**:
+1. **Framework**: React with Next.js (SSR/CSR) and TypeScript.
+2. **Views**:
+   * **Grid**: CSS Grid + card components.
+   * **Table**: MUI `DataGrid` with:
+     * Columns: image, name, type(s), weight, height, base exp, stats, "Details" button.
+     * Filtering by type using MUI table component.
+     * Sorting via MUI table features.
+     * Local pagination (10–50 rows per page).
+3. **Detail modal** with ID, name, image, types, height, weight, and all stats.
+4. **Client-side state** managed with **Zustand**.
+5. **Persistence**: favorites stored in **localStorage**.
+6. **Infinite scroll** on Grid view.
+7. **Caching** with `useMemo` in filtering hooks.
 
-   * **Grid**: CSS Grid + tarjetas.
-   * **Table**: MUI `DataGrid` con:
+## 🚀 Additional features
 
-     * Columnas: imagen, nombre, tipo(s), peso, altura, exp. base, estadísticas, botón "Details".
-     * Filtrado local por tipo.
-     * Ordenamiento local.
-     * Paginación local (10–50 filas por página).
-3. **Modal** de detalle con ID, nombre, imagen, tipos, altura, peso y todas las estadísticas.
-4. **Cliente**: manejo de estado con **Zustand**.
-5. **Persistencia**: favoritos guardados en **localStorage**.
-6. **Infinite scroll** en la vista Grid.
-7. **Cache**: uso de `useMemo` en hooks de filtrado.
-
-## 🚀 Características adicionales
-
-* 🌗 **Dark mode** con toggle y `data-theme` CSS.
-* 🚀 **Infinite scroll** en la sección Grid.
-* ❤️ **Marcar favoritos**:
-
-  * Corazón en tarjetas y modal.
-  * Filtro "View Favorites".
-
-* 📚 **Hooks personalizados**:
-
-  * `useFilteredPokemons` (filtrado + favoritos).
+* 🌗 **Dark mode** toggle using `data-theme` and CSS variables.
+* 🚀 **Infinite scroll** on the Grid view.
+* ❤️ **Favorites system**:
+  * Heart icon in cards and modal.
+  * "View Favorites" filter toggle.
+* 📚 **Custom hooks**:
+  * `useFilteredPokemons` (filtering + favorites).
   * `useInfiniteScroll` (IntersectionObserver).
-* 📦 **Estados globales** con **Zustand**.
-* 🧪 **Pruebas unitarias** con **Jest** y documentación con BDD:
+* 📦 **Global state** with **Zustand**.
+* 🧪 **Unit tests** with **Jest** and BDD-style specs:
+  * `fetchPokemonList`
+  * `useFavoritesStore`
+  * `useFilteredPokemons`
 
-  * `fetchPokemonList`.
-  * `useFavoritesStore` .
-  * `useFilteredPokemons`.
+## 🛠️ Tech Stack
 
-## 🗂️ Estructura de archivos
+- **Framework:** Next.js 15.3.4 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + CSS variables
+- **UI Components:** MUI (DataGrid)
+- **State Management:** Zustand
+- **Testing:** Jest
+- **API:** PokéAPI (REST)
+
+## 🖼️ Screenshots
+
+| Grid View | Table View | Detail Modal |
+|-----------|------------|--------------|
+| ![Grid](![image](https://github.com/user-attachments/assets/bbe8d30c-a27d-479a-b0de-e9941810e504)
+) | ![Table](![image](https://github.com/user-attachments/assets/312601bf-2b18-4dbc-a0fc-3911597bb2f1)
+) | ![Modal](![image](https://github.com/user-attachments/assets/16f2ebc9-4136-4815-929e-d7061cbe6193)
+)
+  
+## 🗂️ **File structure**
 
 ```
 src/
 ├─ app/
-│  ├─ layout.tsx           # RootLayout con Header
-│  ├─ page.tsx             # SSR fetch + PokeClientView
+│  ├─ layout.tsx
+│  ├─ page.tsx
 │  ├─ stores/
-│  │  ├─ viewMode.ts       # Vista global (grid/table)
-│  │  └─ favorites.ts      # Zustand store + persist
+│  │  ├─ viewMode.ts
+│  │  └─ favorites.ts
 │  ├─ lib/
 │  │  ├─ components/
-│  │  │  ├─ Header.tsx
-│  │  │  ├─ PokeGrid.tsx
-│  │  │  ├─ PokeTable.tsx
-│  │  │  ├─ PokeCard.tsx
-│  │  │  └─ PokemonDetailModal.tsx
+│  │  │  ├─ layout/
+│  │  │  │  ├─ Header.tsx
+│  │  │  │  └─ HeaderControls.tsx
+│  │  │  ├─ pokemon/
+│  │  │  │  ├─ cards/
+│  │  │  │  │  └─ PokeCard.tsx
+│  │  │  │  ├─ grid/
+│  │  │  │  │  └─ PokeGrid.tsx
+│  │  │  │  ├─ modal/
+│  │  │  │  │  └─ PokeDetailModal.tsx
+│  │  │  │  ├─ table/
+│  │  │  │  │  ├─ columns.tsx
+│  │  │  │  │  └─ PokeTable.tsx
+│  │  │  │  └─ views/
+│  │  │  │     └─ PokeClientView.tsx
 │  │  ├─ services/
 │  │  │  └─ fetchPokemonList.ts
 │  │  ├─ hooks/
 │  │  │  ├─ useFilteredPokemons.ts
+│  │  │  └─ useHasHydrated.ts
 │  │  │  └─ useInfiniteScroll.ts
+│  │  │  └─ useStickyHeader.ts
+│  │  │  └─ useThemeToggle.ts
 │  │  └─ types/
 │  │     └─ typesPokemonDetails.ts
 │  └─ globals.css
@@ -91,33 +118,33 @@ __tests__/
 ├─ useFilteredPokemons.test.ts
 ```
 
-## 🧪 Pruebas unitarias
+## 🧪 Unit Tests
 
-Ejecuta:
+To run tests:
 
 ```bash
 npm test
 ```
 
-Incluyen:
+Includes:
 
-* **fetchPokemonList**: transforma correctamente la respuesta de la API.
-* **useFavoritesStore**: BDD-style para toggle, consulta y persistencia en localStorage.
-* **useFilteredPokemons**: filtra por nombre y favoritos.
+* **fetchPokemonList**: correctly transforms the response returned by the PokéAPI, ensuring that the data structure is adapted to the application's expected format.
+* **useFavoritesStore**: contains BDD-style unit tests that verify toggling functionality, accurate querying of favorite Pokémon, and reliable persistence using the browser's localStorage.
+* **useFilteredPokemons**: ensures correct filtering behavior based on user input for name search, as well as properly applying the favorites filter logic.
 
-## ⚙️ Cómo ejecutar
+## ⚙️ How to Run
 
-1. Instala dependencias:
+1. Install all required project dependencies using the following command:
 
    ```bash
    npm install
    ```
 
-2. Levanta en modo desarrollo:
+2. Start the development server:
 ```bash
 npm run dev
 ````
 
-3. Abre `http://localhost:3000`
+3. Open `http://localhost:3000`
 
-Desarrollado por Jhon Rivero.
+Developed by Jhon Rivero.
