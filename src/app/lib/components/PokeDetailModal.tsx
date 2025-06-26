@@ -31,14 +31,14 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
     <AnimatePresence>
       {pokemon && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 bg-opacity-60"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 bg-opacity-60"
           onClick={onClose}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="relative flex w-full max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-gray-800 max-h-[90dvh] overflow-y-auto scrollable"
+            className="relative flex w-full mx-3 sm:mx-0 border-[0.1px] border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-gray-800 max-h-[90dvh] overflow-y-auto scrollable"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -73,14 +73,18 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
               ))}
             </div>
 
-            <div className="mt-4 grid w-full grid-cols-2 gap-4 text-center">
+            <div className="mt-4 grid w-full grid-cols-3 py-2 gap-4 text-center">
               <div>
                 <p className="text-xl font-bold text-gray-800 dark:text-gray-100">{pokemon.height} m</p>
-                <p className="text-base text-gray-300">Altura</p>
+                <p className="text-base text-gray-300">Height</p>
               </div>
               <div>
                 <p className="text-xl font-bold text-gray-800 dark:text-gray-100">{pokemon.weight} kg</p>
-                <p className="text-base text-gray-300">Peso</p>
+                <p className="text-base text-gray-300">Weight</p>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-gray-800 dark:text-gray-100">{pokemon.base}</p>
+                <p className="text-base text-gray-300">Base Exp.</p>
               </div>
             </div>
 

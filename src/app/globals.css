@@ -2,7 +2,7 @@
 
 :root {
   --background: #F5F5F5;
-  --foreground: #2d3748;
+  --foreground: #0D121E;
 }
 
 [data-theme='dark'] {
@@ -16,11 +16,31 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.btn-order {
-  @apply px-6 py-2 border border-white rounded-md flex flex-row gap-2 items-center cursor-pointer;
+.card-bg {
+  @apply bg-[#0D121E]; /* Azul oscuro para light mode */
 }
 
-/* Estilos generales para scrollbars */
+[data-theme='dark'] .card-bg {
+  @apply bg-[#F5F5F5]; /* Ya está bien en dark */
+}
+
+.card-container {
+  @apply bg-white text-[#0D121E] border border-gray-500 shadow-xl;
+}
+
+[data-theme='dark'] .card-container {
+  @apply bg-[#1F2430] text-gray-900 border-gray-300;
+}
+
+.card-id {
+  @apply text-gray-800;
+}
+
+
+[data-theme='dark'] .card-id {
+  @apply text-gray-300;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -40,7 +60,6 @@ body {
   background-color: #555;
 }
 
-/* Firefox */
 .scrollable {
   scrollbar-width: thin;
   scrollbar-color: #888 transparent;

@@ -25,7 +25,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
   const columns: GridColDef<PokemonUI>[] = [
     {
       field: 'image',
-      headerName: 'Imagen',
+      headerName: 'Image',
       width: 100,
       renderCell: (params) => (
         <img
@@ -39,14 +39,14 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
     },
     {
       field: 'name',
-      headerName: 'Nombre',
+      headerName: 'Name',
       width: 150,
       valueGetter: (value: string) => value.charAt(0).toUpperCase() + value.slice(1),
-      cellClassName: 'text-base'
+      cellClassName: 'text-base',
     },
     {
       field: 'types',
-      headerName: 'Tipo',
+      headerName: 'Type',
       width: 180,
       renderCell: (params) => (
         <div className="flex flex-wrap items-center gap-1 h-full">
@@ -64,60 +64,81 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       ),
       sortComparator: (v1: string[], v2: string[]) => v1[0].localeCompare(v2[0]),
     },
-    { field: 'weight', headerName: 'Peso (kg)', type: 'number', width: 100 },
-    { field: 'height', headerName: 'Altura (m)', type: 'number', width: 100 },
+    { field: 'weight', headerName: 'Weight (kg)', type: 'number', width: 100 },
+    { field: 'height', headerName: 'Height (m)', type: 'number', width: 100 },
     {
       field: 'hp',
-      headerName: 'Salud',
+      headerName: 'HP',
       type: 'number',
       width: 90,
       valueGetter: (_, row) => row.stats.hp,
-      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
+    },
+    {
+      field: 'base',
+      headerName: 'Base Exp.',
+      type: 'number',
+      width: 90,
+      valueGetter: (_, row) => row.base,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
     },
     {
       field: 'attack',
-      headerName: 'Ataque',
+      headerName: 'Attack',
       type: 'number',
       width: 90,
       valueGetter: (_, row) => row.stats.attack,
-      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
     },
     {
       field: 'defense',
-      headerName: 'Defensa',
+      headerName: 'Defense',
       type: 'number',
       width: 90,
       valueGetter: (_, row) => row.stats.defense,
-      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
     },
     {
       field: 'special-attack',
-      headerName: 'At. Especial',
+      headerName: 'Special Attack',
       type: 'number',
       width: 120,
       valueGetter: (_, row) => row.stats['special-attack'],
-      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
     },
     {
       field: 'special-defense',
-      headerName: 'Def. Especial',
+      headerName: 'Special Attack',
       type: 'number',
       width: 120,
       valueGetter: (_, row) => row.stats['special-defense'],
-      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
     },
     {
       field: 'speed',
-      headerName: 'Velocidad',
+      headerName: 'Speed',
       type: 'number',
       width: 110,
       valueGetter: (_, row) => row.stats.speed,
-      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => (
+        <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />
+      ),
     },
-    
     {
       field: 'actions',
-      headerName: 'Detalles',
+      headerName: 'Details',
       type: 'actions',
       width: 120,
       renderCell: (params) => (
@@ -126,7 +147,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
           size="small"
           onClick={() => onShowDetails(params.row)}
         >
-          Ver Detalles
+          View Details
         </Button>
       ),
     },

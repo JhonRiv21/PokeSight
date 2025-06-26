@@ -4,6 +4,7 @@ export type PokemonUI = {
   image: string;
   height: number;
   weight: number;
+  base: number;
   types: string[];
   stats: Record<string, number>;
 };

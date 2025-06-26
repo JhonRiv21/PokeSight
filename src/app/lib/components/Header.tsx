@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { GridIcon, TableIcon, Sun, Moon } from 'lucide-react';
+import { GridIcon, TableIcon, Sun, Moon, Menu, X } from 'lucide-react';
 import { useViewStore } from '@/app/stores/viewMode';
 
 export const Header = () => {
@@ -9,6 +9,7 @@ export const Header = () => {
   const setView = useViewStore((state) => state.setView);
   const [isSticky, setIsSticky] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   const activeButton = (mode: 'grid' | 'table') => {
@@ -19,11 +20,21 @@ export const Header = () => {
     `;
   };
 
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    const theme = next ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsSticky(!entry.isIntersecting);
-      },
+      ([entry]) => setIsSticky(!entry.isIntersecting),
       { threshold: 0 }
     );
     if (sentinelRef.current) observer.observe(sentinelRef.current);
@@ -36,14 +47,6 @@ export const Header = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  const toggleTheme = () => {
-    const next = !isDark;
-    setIsDark(next);
-    const theme = next ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
-    document.documentElement.setAttribute('data-theme', theme);
-  };
 
   return (
     <>
@@ -60,7 +63,7 @@ export const Header = () => {
             PokeSight
           </h2>
 
-          <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <label className="relative inline-flex items-center cursor-pointer mx-5">
               <input type="checkbox" checked={isDark} onChange={toggleTheme} className="sr-only" />
               <Sun className="text-background" />
@@ -78,7 +81,10 @@ export const Header = () => {
               <Moon className="text-background" />
             </label>
 
-            <button onClick={() => setView('grid')} className={activeButton('grid')}>
+            <button
+              onClick={() => setView('grid')}
+              className={activeButton('grid')}
+            >
               <GridIcon size={20} />
               Grid
             </button>
@@ -87,7 +93,57 @@ export const Header = () => {
               Table
             </button>
           </div>
+
+          <div className="md:hidden">
+            <button aria-label='Display or close menu' onClick={toggleMobileMenu}>
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
+
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 flex flex-col gap-4 border-t border-gray-300 pt-4">
+            <div className="flex justify-center">
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked={isDark} onChange={toggleTheme} className="sr-only" />
+                <Sun className="text-background" />
+                <span
+                  className={`mx-3 flex h-8 w-[60px] items-center rounded-full p-1 duration-200 ${
+                    isDark ? 'bg-gray-400' : 'bg-[#CCCCCE]'
+                  }`}
+                >
+                  <span
+                    className={`h-6 w-6 rounded-full bg-white duration-200 ${
+                      isDark ? 'translate-x-[28px]' : ''
+                    }`}
+                  />
+                </span>
+                <Moon className="text-background" />
+              </label>
+            </div>
+
+            <div className="flex flex-col items-center gap-2 pb-4">
+              <button
+                onClick={() => {
+                  setView('grid');
+                  setIsMobileMenuOpen((prev) => !prev);
+                }}  
+                className={activeButton('grid')}>
+                <GridIcon size={20} />
+                Grid
+              </button>
+              <button 
+                onClick={() => {
+                  setView('table');
+                  setIsMobileMenuOpen((prev) => !prev);
+                }}  
+                className={activeButton('table')}>
+                <TableIcon size={20} />
+                Table
+              </button>
+            </div>
+          </div>
+        )}
       </header>
     </>
   );
