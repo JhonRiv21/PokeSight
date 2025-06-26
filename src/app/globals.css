@@ -26,5 +26,5 @@ body {
 }
 
 .btn-order {
-  @apply px-6 py-2.5 border border-white rounded-md flex flex-row gap-2 items-center;
+  @apply px-6 py-2.5 border border-white rounded-sm flex flex-row gap-2 items-center cursor-pointer;
 }

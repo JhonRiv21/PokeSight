@@ -2,11 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { GridIcon, TableIcon } from 'lucide-react';
+import { useViewStore } from '@/app/stores/viewMode';
 
 export const Header = () => {
-  const [view, setView] = useState('grid');
-  const [isSticky, setIsSticky] = useState(false);
+  const view = useViewStore((state) => state.view);
+  const setView = useViewStore((state) => state.setView);
+  const [isSticky, setIsSticky] = useState(false);  
   const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const activeButton = (mode: 'grid' | 'table') =>
+    view === mode ? 'bg-gray-800 text-white' : 'hover:bg-gray-100';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,16 +46,16 @@ export const Header = () => {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setView('table')}
-              className={`btn-order ${isSticky ? 'py-2! text-sm! transition-all duration-300' : ''}`}
-            >
-              <TableIcon size={16} /> Tabla
-            </button>
-            <button
               onClick={() => setView('grid')}
-              className={`btn-order ${isSticky ? 'py-2! text-sm! transition-all duration-300' : ''}`}
+              className={`btn-order ${activeButton('grid')} ${isSticky ? '!py-2 !px-2.5 !text-sm' : ''}`}
             >
               <GridIcon size={16} /> Cuadrícula
+            </button>
+            <button
+              onClick={() => setView('table')}
+              className={`btn-order ${activeButton('table')} ${isSticky ? '!py-2 !px-2.5 !text-sm' : ''}`}
+            >
+              <TableIcon size={16} /> Tabla
             </button>
           </div>
         </div>
