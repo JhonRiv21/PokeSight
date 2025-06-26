@@ -65,12 +65,13 @@ This project is a web application built with **Next.js**, **React**, and **TypeS
 
 ## 🖼️ Screenshots
 
-| Grid View | Table View | Detail Modal |
-|-----------|------------|--------------|
-| ![Grid](![image](https://github.com/user-attachments/assets/bbe8d30c-a27d-479a-b0de-e9941810e504)
-) | ![Table](![image](https://github.com/user-attachments/assets/312601bf-2b18-4dbc-a0fc-3911597bb2f1)
-) | ![Modal](![image](https://github.com/user-attachments/assets/16f2ebc9-4136-4815-929e-d7061cbe6193)
-)
+| Grid View | Table View |
+|-----------|------------|
+| ![Grid](https://github.com/user-attachments/assets/bbe8d30c-a27d-479a-b0de-e9941810e504) | ![Table](https://github.com/user-attachments/assets/312601bf-2b18-4dbc-a0fc-3911597bb2f1) |
+
+| Detail Modal |
+|--------------|
+| ![Modal](https://github.com/user-attachments/assets/16f2ebc9-4136-4815-929e-d7061cbe6193) |
   
 ## 🗂️ **File structure**
 
