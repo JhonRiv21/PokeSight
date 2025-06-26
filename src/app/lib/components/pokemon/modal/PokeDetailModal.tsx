@@ -20,16 +20,23 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
+    if (pokemon) {
+      document.body.classList.add('modal-open');
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.classList.remove('modal-open');
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      document.body.classList.remove('modal-open');
     };
-  }, [onClose]);
+  }, [pokemon, onClose]);
 
   return (
     <AnimatePresence>
@@ -42,7 +49,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="relative flex w-full my-20 mx-3 sm:my-0 sm:mx-0 border border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-white dark:bg-neutral-900 max-h-screen md:max-h-[90vh] overflow-y-auto scrollable"
+            className="relative flex w-full my-12 mx-3 sm:my-0 sm:mx-0 border border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-white dark:bg-neutral-900 max-h-screen md:max-h-[90vh] overflow-y-auto scrollable"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -63,7 +70,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
             <button
               onClick={onClose}
               className="cursor-pointer absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 dark:text-gray-300"
-              aria-label="Cerrar modal"
+              aria-label="Close"
             >
               <X className='h-8 w-8' />
             </button>
@@ -133,7 +140,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
               onClick={onClose}
               className="cursor-pointer mt-6 w-full rounded-lg bg-blue-600 px-4 py-2 text-center font-semibold text-white shadow-sm hover:bg-blue-900 transition duration-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             >
-              Cerrar
+              Close
             </button>
           </motion.div>
         </motion.div>

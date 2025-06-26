@@ -17,6 +17,11 @@ body {
   min-height: 100dvh;
 }
 
+.modal-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
 .card-bg {
   @apply bg-[#0D121E];
 }
