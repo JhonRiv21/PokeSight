@@ -1,11 +1,11 @@
 'use client';
 
 import { PokeCard } from '../cards/PokeCard';
-import { PokemonUI } from '../../../types/typesPokemonDetails';
+import { PokemonUI } from '@/app/lib/types/typesPokemonDetails';
 import { useEffect, useRef, useState } from 'react';
 import { X, Search } from 'lucide-react';
-import { useFilteredPokemons } from '../../../hooks/useFilteredPokemons';
-import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
+import { useFilteredPokemons } from '@/app/lib/hooks/useFilteredPokemons';
+import { useInfiniteScroll } from '@/app/lib/hooks/useInfiniteScroll';
 import { useFavoritesStore } from '@/app/stores/favorites';
 
 type Props = {
@@ -94,7 +94,7 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
 
       {visiblePokemons.length === 0 ? (
         <p className="text-center text-2xl text-gray-400 mt-10">
-          No Pokemon found for "<strong>{searchTerm}</strong>"
+          No Pokémon found for "<strong>{searchTerm}</strong>"
         </p>
       ) : (
         <>

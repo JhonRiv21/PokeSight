@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import type { PokemonUI } from '../../../types/typesPokemonDetails';
+import type { PokemonUI } from '@/app/lib/types/typesPokemonDetails';
 import { getPokeTableColumns } from './columns';
 
 type PokeTableProps = {

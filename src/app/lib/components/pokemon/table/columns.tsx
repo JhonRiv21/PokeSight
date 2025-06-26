@@ -3,8 +3,8 @@
 import { GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import type { PokemonUI } from '../../../types/typesPokemonDetails';
-import { typeColors } from '../../../utils/styles';
+import type { PokemonUI } from '@/app/lib/types/typesPokemonDetails';
+import { typeColors } from '@/app/lib/utils/styles';
 
 const getStatChipColor = (value: number): 'success' | 'error' | 'default' => {
   if (value >= 100) return 'success';
