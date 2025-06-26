@@ -56,11 +56,11 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
 
   return (
     <>
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-wrap flex-row gap-5 items-center justify-between'>
         {favorites.length > 0 && 
           <button
             onClick={() => setShowOnlyFavorites((prev) => !prev)}
-            className="ml-4 cursor-pointer text-sm px-4 py-1.5 rounded-md font-medium bg-blue-600 text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800 transition-colors duration-500"
+            className="ml-4 cursor-pointer text-sm px-4 py-2.5 rounded-md font-medium bg-blue-600 text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800 transition-colors duration-500"
           >
             {showOnlyFavorites ? 'Show All' : `View Favorites (${favorites.length})`}
           </button>
@@ -98,7 +98,7 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
         </p>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 lg:gap-x-8 gap-y-8 md:gap-y-10 mt-12">
+          <div className="-ml-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 lg:gap-x-8 gap-y-8 md:gap-y-10 mt-12">
             {visiblePokemons.map((pokemon) => (
               <PokeCard
                 key={pokemon.id}
