@@ -22,7 +22,7 @@ export const getPokeTableColumns = (
     width: 100,
     renderCell: (params) => (
       <Image
-        loading="lazy"
+        loading={params.row.id === 1 ? 'eager' : 'lazy'}
         width={60}
         height={60}
         src={params.row.image}
