@@ -5,7 +5,7 @@ export async function fetchPokemonList(): Promise<PokemonUI[]> {
   const { results } = await res.json();
 
   const pokemons = await Promise.all(
-    results.map(({ url }: { url: string }) => fetch(url).then((r) => r.json()))
+    results.map(({ url }: { url: string }) => fetch(url).then((res) => res.json()))
   );
 
   return pokemons.map((p): PokemonUI => ({

@@ -32,7 +32,7 @@ export const Header = () => {
 
       <header
         className={`sticky top-0 z-50 bg-black/80 backdrop-blur shadow-sm transition-all duration-300 ${
-          isSticky ? 'py-3 top-2 mx-auto max-w-screen-xl rounded-4xl' : 'py-4'
+          isSticky ? 'py-3' : 'py-4'
         } px-5`}
       >
         <div className='flex justify-between items-center max-w-screen-2xl mx-auto'>
@@ -47,13 +47,13 @@ export const Header = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setView('grid')}
-              className={`btn-order ${activeButton('grid')} ${isSticky ? '!py-2 !px-2.5 !text-sm' : ''}`}
+              className={`btn-order ${activeButton('grid')}`}
             >
               <GridIcon size={16} /> Cuadrícula
             </button>
             <button
               onClick={() => setView('table')}
-              className={`btn-order ${activeButton('table')} ${isSticky ? '!py-2 !px-2.5 !text-sm' : ''}`}
+              className={`btn-order ${activeButton('table')}`}
             >
               <TableIcon size={16} /> Tabla
             </button>
