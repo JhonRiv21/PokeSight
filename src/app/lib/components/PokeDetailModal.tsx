@@ -1,13 +1,14 @@
 import * as React from 'react';
 import type { PokemonUI } from '../types/typesPokemonDetails';
 import { typeColors } from '../utils/styles';
+import { X } from 'lucide-react';
 
 type PokemonDetailModalProps = {
   pokemon: PokemonUI | null;
   onClose: () => void;
 };
 
-export const PokemonDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) => {
+export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) => {
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -30,17 +31,15 @@ export const PokemonDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps
       onClick={onClose}
     >
       <div
-        className="relative flex w-full max-w-md flex-col items-center rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800 max-h-[90dvh] overflow-y-auto"
+        className="relative flex w-full max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-gray-800 max-h-[90dvh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+          className="cursor-pointer absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
           aria-label="Cerrar modal"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <X className='h-6 w-6' />
         </button>
 
         <h2 className="text-4xl font-bold capitalize text-gray-900 dark:text-white">
@@ -102,7 +101,7 @@ export const PokemonDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps
 
         <button
           onClick={onClose}
-          className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-2 text-center font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="cursor-pointer mt-6 w-full rounded-lg bg-blue-600 px-4 py-2 text-center font-semibold text-white shadow-sm hover:bg-blue-900 transition duration-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
           Cerrar
         </button>

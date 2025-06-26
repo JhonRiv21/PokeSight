@@ -31,7 +31,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
         <img
           src={params.row.image}
           alt={params.row.name}
-          style={{ height: '55px', margin: 'auto' }}
+          style={{ height: '60px', margin: 'auto' }}
         />
       ),
       sortable: false,
@@ -42,6 +42,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       headerName: 'Nombre',
       width: 150,
       valueGetter: (value: string) => value.charAt(0).toUpperCase() + value.slice(1),
+      cellClassName: 'text-base'
     },
     {
       field: 'types',
@@ -52,7 +53,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
           {params.row.types.map((type) => (
             <span
               key={type}
-              className={`rounded-full px-2 py-0.5 text-xs font-semibold capitalize ${
+              className={`rounded-full px-2 py-0.5 text-sm font-semibold capitalize ${
                 typeColors[type] || 'bg-gray-100 text-gray-800'
               }`}
             >
@@ -71,7 +72,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       type: 'number',
       width: 90,
       valueGetter: (_, row) => row.stats.hp,
-      renderCell: (params) => <Chip label={params.value} size="small" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
     },
     {
       field: 'attack',
@@ -79,7 +80,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       type: 'number',
       width: 90,
       valueGetter: (_, row) => row.stats.attack,
-      renderCell: (params) => <Chip label={params.value} size="small" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
     },
     {
       field: 'defense',
@@ -87,7 +88,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       type: 'number',
       width: 90,
       valueGetter: (_, row) => row.stats.defense,
-      renderCell: (params) => <Chip label={params.value} size="small" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
     },
     {
       field: 'special-attack',
@@ -95,7 +96,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       type: 'number',
       width: 120,
       valueGetter: (_, row) => row.stats['special-attack'],
-      renderCell: (params) => <Chip label={params.value} size="small" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
     },
     {
       field: 'special-defense',
@@ -103,7 +104,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       type: 'number',
       width: 120,
       valueGetter: (_, row) => row.stats['special-defense'],
-      renderCell: (params) => <Chip label={params.value} size="small" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
     },
     {
       field: 'speed',
@@ -111,7 +112,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       type: 'number',
       width: 110,
       valueGetter: (_, row) => row.stats.speed,
-      renderCell: (params) => <Chip label={params.value} size="small" color={getStatChipColor(params.value)} />,
+      renderCell: (params) => <Chip label={params.value} size="medium" color={getStatChipColor(params.value)} />,
     },
     
     {
@@ -121,7 +122,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       width: 120,
       renderCell: (params) => (
         <Button
-          variant="outlined"
+          variant="contained"
           size="small"
           onClick={() => onShowDetails(params.row)}
         >
@@ -135,6 +136,9 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
     <Box sx={{ height: 650, width: '100%' }}>
       <DataGrid
         rows={pokemonList}
+        getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage % 2 === 0 ? 'bg-blue-50' : 'bg-gray-50'
+        }
         columns={columns}
         rowHeight={65}
         pageSizeOptions={[10, 25, 50]}

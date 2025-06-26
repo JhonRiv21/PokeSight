@@ -1,20 +1,7 @@
 'use client';
 
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { Header } from './lib/components/Header';
 import './globals.css';
-
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#1976d2',
-    },
-    background: {
-      default: '#f9f9f9',
-    },
-  },
-});
 
 export default function RootLayout({
   children,
@@ -22,13 +9,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="en">
+       <head>
+        <title>PokeSight</title>
+        <meta name="description" content="Explora todos los Pokémon de la primera generación" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Header />
-          {children}
-        </ThemeProvider>
+        <Header />
+        {children}
       </body>
     </html>
   );

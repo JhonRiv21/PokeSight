@@ -6,7 +6,7 @@ export default async function App() {
 
   console.log(pokedata)
   return (
-    <main className="p-5 max-w-screen-2xl mx-auto">
+    <main className="p-5 max-w-screen-2xl mx-auto bg-background">
       <PokeClientView pokemonList={pokedata} />
     </main>
   );
