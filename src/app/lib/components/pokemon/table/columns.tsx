@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import type { PokemonUI } from '@/app/lib/types/typesPokemonDetails';
 import { typeColors } from '@/app/lib/utils/styles';
+import Image from 'next/image'
 
 const getStatChipColor = (value: number): 'success' | 'error' | 'default' => {
   if (value >= 100) return 'success';
@@ -20,11 +21,13 @@ export const getPokeTableColumns = (
     headerName: 'Image',
     width: 100,
     renderCell: (params) => (
-      <img
+      <Image
         loading="lazy"
+        width={60}
+        height={60}
         src={params.row.image}
         alt={params.row.name}
-        style={{ height: '60px', margin: 'auto' }}
+        style={{ margin: 'auto' }}
       />
     ),
     sortable: false,

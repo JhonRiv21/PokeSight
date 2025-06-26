@@ -7,6 +7,7 @@ import { Heart, HeartOff, X } from 'lucide-react';
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useFavoritesStore } from '@/app/stores/favorites';
+import Image from 'next/image'
 
 type PokemonDetailModalProps = {
   pokemon: PokemonUI | null;
@@ -68,7 +69,13 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
             </h2>
             <p className="mt-1 text-lg text-gray-300">ID: #{pokemon.id}</p>
 
-            <img src={pokemon.image} alt={pokemon.name} className="my-4 h-40 w-40" />
+            <Image
+              width={160}
+              height={160}
+              src={pokemon.image}
+              alt={pokemon.name}
+              className="my-4" 
+            />
 
             <div className="flex gap-2 flex-wrap justify-center">
               {pokemon.types.map((type) => (

@@ -94,7 +94,7 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
 
       {visiblePokemons.length === 0 ? (
         <p className="text-center text-2xl text-gray-400 mt-10">
-          No Pokémon found for "<strong>{searchTerm}</strong>"
+          No Pokémon found for <strong>{searchTerm}</strong>
         </p>
       ) : (
         <>

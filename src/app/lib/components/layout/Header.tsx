@@ -1,26 +1,15 @@
 'use client';
 
-import { GridIcon, TableIcon, Sun, Moon, Menu, X } from 'lucide-react';
-import { useViewStore } from '@/app/stores/viewMode';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useStickyHeader } from '@/app/lib/hooks/useStickyHeader';
 import { useThemeToggle } from '@/app/lib/hooks/useThemeToggle';
 import { HeaderControls } from './HeaderControls';
 
 export const Header = () => {
-  const view = useViewStore((state) => state.view);
-  const setView = useViewStore((state) => state.setView);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isSticky, sentinelRef } = useStickyHeader();
   const { isDark, toggleTheme } = useThemeToggle();
-
-  const activeButton = (mode: 'grid' | 'table') => {
-    const isActive = view === mode;
-    return `
-      px-5 py-1.5 rounded-md flex items-center gap-2 transition duration-300 cursor-pointer
-      ${isActive ? 'bg-[#061292] text-white' : 'bg-gray-100 text-gray-800 dark:bg-gray-500 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'}
-    `;
-  };
 
   return (
     <>

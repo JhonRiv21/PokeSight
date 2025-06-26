@@ -3,6 +3,7 @@
 import { Heart, HeartOff } from 'lucide-react';
 import { useFavoritesStore } from '@/app/stores/favorites';
 import { useHasHydrated } from '@/app/lib/hooks/useHasHydrated';
+import Image from 'next/image'
 
 type Props = {
   name: string;
@@ -42,10 +43,12 @@ export const PokeCard = ({ name, image, id, onClick }: Props) => {
           </span>
         )}
 
-        <img
+        <Image
           src={image}
           alt={name}
-          className="rounded-full object-contain w-36 h-36"
+          width={144}
+          height={144}
+          className="rounded-full object-contain"
           loading="lazy"
         />
         <p className="mt-4 text-lg font-semibold capitalize text-center card-id">{name}</p>

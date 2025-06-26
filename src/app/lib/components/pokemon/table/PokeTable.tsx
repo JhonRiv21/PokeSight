@@ -12,7 +12,7 @@ type PokeTableProps = {
 };
 
 export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
-  const columns = React.useMemo(() => getPokeTableColumns(onShowDetails), []);
+  const columns = React.useMemo(() => getPokeTableColumns(onShowDetails), [onShowDetails]);
 
   return (
     <Box sx={{ height: 650, width: '100%' }}>
