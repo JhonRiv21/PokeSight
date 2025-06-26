@@ -3,9 +3,10 @@
 import * as React from 'react';
 import type { PokemonUI } from '../types/typesPokemonDetails';
 import { typeColors } from '../utils/styles';
-import { X } from 'lucide-react';
+import { Heart, HeartOff, X } from 'lucide-react';
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useFavoritesStore } from '@/app/stores/favorites';
 
 type PokemonDetailModalProps = {
   pokemon: PokemonUI | null;
@@ -14,6 +15,8 @@ type PokemonDetailModalProps = {
 
 export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) => {
   const MAX_BASE_STAT = 255;
+  const isFavorite = useFavoritesStore((state) => pokemon && state.isFavorite(pokemon.id));
+  const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -45,6 +48,13 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.2 }}
           >
+            <button
+              onClick={() => pokemon && toggleFavorite(pokemon.id)}
+              className="absolute top-2.5 left-3 text-gray-400 hover:text-red-500 cursor-pointer"
+              aria-label="Toggle favorite"
+            >
+              {isFavorite ? <Heart className="fill-red-500 text-red-500 w-7.5 h-7.5" /> : <HeartOff className="w-7.5 h-7.5" />}
+            </button>
             <button
               onClick={onClose}
               className="cursor-pointer absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"

@@ -29,6 +29,7 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
       width: 100,
       renderCell: (params) => (
         <img
+          loading="lazy"
           src={params.row.image}
           alt={params.row.name}
           style={{ height: '60px', margin: 'auto' }}

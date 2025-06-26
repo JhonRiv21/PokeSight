@@ -17,11 +17,11 @@ body {
 }
 
 .card-bg {
-  @apply bg-[#0D121E]; /* Azul oscuro para light mode */
+  @apply bg-[#0D121E];
 }
 
 [data-theme='dark'] .card-bg {
-  @apply bg-[#F5F5F5]; /* Ya está bien en dark */
+  @apply bg-[#F5F5F5];
 }
 
 .card-container {
