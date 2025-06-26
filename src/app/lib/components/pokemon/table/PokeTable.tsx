@@ -32,3 +32,5 @@ export const PokeTable = ({ pokemonList, onShowDetails }: PokeTableProps) => {
     </Box>
   );
 };
+
+export default PokeTable;
