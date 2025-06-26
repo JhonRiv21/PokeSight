@@ -62,7 +62,7 @@ export const PokeGrid = ({ pokemonList, onShowDetails }: Props) => {
             onClick={() => setShowOnlyFavorites((prev) => !prev)}
             className="ml-4 cursor-pointer text-sm px-4 py-1.5 rounded-md font-medium bg-blue-600 text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800 transition-colors duration-500"
           >
-            {showOnlyFavorites ? 'Show All' : 'View Favorites'}
+            {showOnlyFavorites ? 'Show All' : `View Favorites (${favorites.length})`}
           </button>
         }
       
