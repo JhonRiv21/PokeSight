@@ -42,7 +42,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="relative flex w-full m-3 my-8 sm:my-0 sm:mx-0 border border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-white dark:bg-neutral-900 max-h-screen md:max-h-[90vh] overflow-y-auto scrollable"
+            className="relative flex w-full my-20 mx-3 sm:my-0 sm:mx-0 border border-gray-400 max-w-md flex-col items-center rounded-lg p-6 shadow-xl bg-white dark:bg-neutral-900 max-h-screen md:max-h-[90vh] overflow-y-auto scrollable"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -62,7 +62,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
             </button>
             <button
               onClick={onClose}
-              className="cursor-pointer absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 dark:text-gray-300" // Agregado dark:text-gray-300
+              className="cursor-pointer absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 dark:text-gray-300"
               aria-label="Cerrar modal"
             >
               <X className='h-8 w-8' />
@@ -71,7 +71,6 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
             <h2 className="text-4xl font-bold capitalize text-gray-900 dark:text-white">
               {pokemon.name}
             </h2>
-            {/* Ajustado color de texto para dark mode */}
             <p className="mt-1 text-lg text-gray-300 dark:text-gray-400">ID: #{pokemon.id}</p>
 
             <Image
@@ -87,7 +86,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
                 <span
                   key={type}
                   className={`rounded-full px-3 py-1 text-base font-semibold capitalize ${
-                    typeColors[type] || 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200' // Asegura dark mode para tipos genéricos
+                    typeColors[type] || 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
                   }`}
                 >
                   {type}
