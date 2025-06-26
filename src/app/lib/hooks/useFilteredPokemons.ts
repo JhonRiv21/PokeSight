@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { filterPokemons } from '../utils/filterPokemons';
 import type { PokemonUI } from '../types/typesPokemonDetails';
 
 export function useFilteredPokemons(
@@ -7,11 +8,8 @@ export function useFilteredPokemons(
   favorites: number[],
   showOnlyFavorites: boolean
 ) {
-  return useMemo(() => {
-    return pokemonList
-      .filter((item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-      .filter((item) => (showOnlyFavorites ? favorites.includes(item.id) : true));
-  }, [pokemonList, searchTerm, favorites, showOnlyFavorites]);
+  return useMemo(
+    () => filterPokemons(pokemonList, searchTerm, favorites, showOnlyFavorites),
+    [pokemonList, searchTerm, favorites, showOnlyFavorites]
+  );
 }
