@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import type { PokemonUI } from '../types/typesPokemonDetails';
-import { typeColors } from '../utils/styles';
+import type { PokemonUI } from '../../../types/typesPokemonDetails';
+import { typeColors } from '../../../utils/styles';
 import { Heart, HeartOff, X } from 'lucide-react';
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';

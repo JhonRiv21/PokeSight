@@ -1,11 +1,11 @@
 'use client';
 
-import { PokeCard } from './PokeCard';
-import { PokemonUI } from '../types/typesPokemonDetails';
+import { PokeCard } from '../cards/PokeCard';
+import { PokemonUI } from '../../../types/typesPokemonDetails';
 import { useEffect, useRef, useState } from 'react';
 import { X, Search } from 'lucide-react';
-import { useFilteredPokemons } from '../hooks/useFilteredPokemons';
-import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
+import { useFilteredPokemons } from '../../../hooks/useFilteredPokemons';
+import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import { useFavoritesStore } from '@/app/stores/favorites';
 
 type Props = {

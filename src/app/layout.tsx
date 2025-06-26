@@ -1,6 +1,6 @@
 'use client';
 
-import { Header } from './lib/components/Header';
+import { Header } from './lib/components/layout/Header';
 import './globals.css';
 
 export default function RootLayout({

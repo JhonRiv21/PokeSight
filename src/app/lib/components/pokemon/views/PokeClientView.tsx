@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useViewStore } from '@/app/stores/viewMode';
-import { PokeGrid } from './PokeGrid';
-import { PokeTable } from './PokeTable';
-import { PokeDetailModal } from './PokeDetailModal';
-import type { PokemonUI } from '../types/typesPokemonDetails';
+import { PokeGrid } from '../grid/PokeGrid';
+import { PokeTable } from '../table/PokeTable';
+import { PokeDetailModal } from '../modal/PokeDetailModal';
+import type { PokemonUI } from '@/app/lib/types/typesPokemonDetails';
 
 export function PokeClientView({ pokemonList }: { pokemonList: PokemonUI[] }) {
   const view = useViewStore((state) => state.view);

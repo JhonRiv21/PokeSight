@@ -1,5 +1,5 @@
-import { PokeClientView } from "./lib/components/PokeClientView";
-import { fetchPokemonList } from "./lib/services/pokemonList";
+import { PokeClientView } from './lib/components/pokemon/views/PokeClientView';
+import { fetchPokemonList } from './lib/services/pokemonList';
 
 export default async function App() {
   const pokedata = await fetchPokemonList();

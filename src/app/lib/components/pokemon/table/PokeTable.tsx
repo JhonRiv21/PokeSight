@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import type { PokemonUI } from '../types/typesPokemonDetails';
-import { typeColors } from '../utils/styles';
+import type { PokemonUI } from '../../../types/typesPokemonDetails';
+import { typeColors } from '../../../utils/styles';
 import { useMemo } from 'react';
 
 /**
