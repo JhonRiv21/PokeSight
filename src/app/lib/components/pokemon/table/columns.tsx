@@ -28,6 +28,7 @@ export const getPokeTableColumns = (
         src={params.row.image}
         alt={params.row.name}
         style={{ margin: 'auto' }}
+        priority={true}
       />
     ),
     sortable: false,

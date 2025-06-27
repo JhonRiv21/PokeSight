@@ -50,6 +50,7 @@ export const PokeCard = ({ name, image, id, onClick }: Props) => {
           height={144}
           className="rounded-full object-contain"
           loading={id === 1 ? 'eager' : 'lazy'}
+          priority={true}
         />
         <p className="mt-4 text-lg font-semibold capitalize text-center card-id">{name}</p>
       </button>
