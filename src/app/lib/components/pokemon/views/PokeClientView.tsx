@@ -7,6 +7,7 @@ import { PokeGrid } from '../grid/PokeGrid';
 import { PokeDetailModal } from '../modal/PokeDetailModal';
 import type { PokemonUI } from '@/app/lib/types/typesPokemonDetails';
 import dynamic from 'next/dynamic';
+import { useHasHydrated } from '@/app/lib/hooks/useHasHydrated';
 
 const PokeTable = dynamic(() => import('../table/PokeTable'), {
   ssr: false,
@@ -16,6 +17,7 @@ const PokeTable = dynamic(() => import('../table/PokeTable'), {
 export function PokeClientView({ pokemonList }: { pokemonList: PokemonUI[] }) {
   const view = useViewStore((state) => state.view);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonUI | null>(null);
+  const hasHydrated = useHasHydrated();
 
   const handleShowDetails = (pokemon: PokemonUI) => {
     setSelectedPokemon(pokemon);
@@ -29,18 +31,27 @@ export function PokeClientView({ pokemonList }: { pokemonList: PokemonUI[] }) {
     <>
       <AnimatePresence mode="wait">
         {view === 'grid' ? (
-          <motion.div
-            key="grid"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-          >
-            <PokeGrid
-              pokemonList={pokemonList}
-              onShowDetails={handleShowDetails}
-            />
-          </motion.div>
+          hasHydrated ? (
+            <motion.div
+              key="grid"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <PokeGrid
+                pokemonList={pokemonList}
+                onShowDetails={handleShowDetails}
+              />
+            </motion.div>
+          ) : (
+            <div key="grid">
+              <PokeGrid
+                pokemonList={pokemonList}
+                onShowDetails={handleShowDetails}
+              />
+            </div>
+          )
         ) : (
           <motion.div
             key="table"
