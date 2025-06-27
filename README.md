@@ -72,7 +72,20 @@ This project is a web application built with **Next.js**, **React**, and **TypeS
 | Detail Modal |
 |--------------|
 | ![Modal](https://github.com/user-attachments/assets/16f2ebc9-4136-4815-929e-d7061cbe6193) |
-  
+
+## 🚀 Performance & Accessibility
+
+This project achieves **100%** scores across all key Lighthouse categories:
+
+- ✅ **Performance**: 99%
+- ✅ **Accessibility**: 100%
+- ✅ **Best Practices**: 100%
+- ✅ **SEO**: 100%
+
+![Unlighthouse Report showing 100% in all categories](https://github.com/user-attachments/assets/54b80fd2-d8a7-4b6e-a50b-a574f81d4b7f)
+
+The app is optimized for fast load times, accessibility compliance, modern web standards, and strong SEO practices.
+
 ## 🗂️ **File structure**
 
 ```
