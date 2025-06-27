@@ -86,6 +86,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
               src={pokemon.image}
               alt={pokemon.name}
               className="my-4"
+              loading="lazy"
             />
 
             <div className="flex gap-2 flex-wrap justify-center">

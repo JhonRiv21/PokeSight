@@ -22,13 +22,12 @@ export const getPokeTableColumns = (
     width: 100,
     renderCell: (params) => (
       <Image
-        loading={params.row.id === 1 ? 'eager' : 'lazy'}
         width={60}
         height={60}
         src={params.row.image}
         alt={params.row.name}
         style={{ margin: 'auto' }}
-        priority={true}
+        {...(params.row.id === 1 ? { priority: true } : { loading: 'lazy' })}
       />
     ),
     sortable: false,
