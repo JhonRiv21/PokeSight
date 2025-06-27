@@ -42,7 +42,7 @@ export const Header = () => {
 
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 flex flex-col gap-4 border-t border-gray-300 pt-4"
-               style={{ backgroundColor: 'var(--background)' }} // Asegura que el fondo del menú móvil cambie con el tema
+               style={{ backgroundColor: 'var(--background)' }}
           >
             <HeaderControls
               isDark={isDark}
