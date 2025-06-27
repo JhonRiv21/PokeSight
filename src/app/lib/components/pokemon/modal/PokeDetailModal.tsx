@@ -118,7 +118,7 @@ export const PokeDetailModal = ({ pokemon, onClose }: PokemonDetailModalProps) =
             </div>
 
             <div className="mt-4 w-full">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Estadísticas</h3>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Stats</h3>
               <div className="mt-2 space-y-2">
                 {Object.entries(pokemon.stats).map(([statName, statValue]) => (
                   <div key={statName}>
